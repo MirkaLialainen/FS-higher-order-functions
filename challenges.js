@@ -14,9 +14,12 @@ forEach(["a", "b", "c"], e => {console.log(e)}); // a b c
 ------------------*/
 
 function forEach(arr, cb) {
-  // your code here
+  for (let elem of arr) {
+    cb(elem);
+  }
 }
-
+ 
+  forEach(["a", "b", "c"], e => {console.log(e)}); // a b c
 /*------------------
 2)
 Create a function named
@@ -36,9 +39,14 @@ console.log(map([5, 6, 7], e => e * 2)); // [10, 12, 14]
 ------------------*/
 
 function map(arr, cb) {
-  // your code here
+  let newarr = [];
+  for (let elem of arr) { //loop over every element of the array (arr)
+    let newElem = cb(elem);
+    newarr.push(newElem); //push the looped elements to new array (newarr)
+  }
+  return newarr;
 }
-
+console.log(map([5, 6, 7], e => e * 2)); // [10, 12, 14]
 /*------------------
 3)
 Create a function named
@@ -55,11 +63,18 @@ will return true or false for each item).
 Test cases:
 console.log(filter([5, 6, 7, 8], e => e % 2 === 0 ? true : false)); // [6, 8]
 ------------------*/
-
+//?
 function filter(arr, cb) {
-  // your code here
+  let BrandNewArr = [];
+  for (let elem of arr) {
+    if (elem % 2 === 0)
+    BrandNewArr.push(elem,cb);
+    }
+  return BrandNewArr;
 }
 
+
+console.log(filter([5, 6, 7, 8], e => e % 2 === 0 ? true : false)); // [6, 8]
 /*------------------
 4)
 Create a function named
@@ -81,9 +96,16 @@ console.log(every([2, 4, 6, 2], n => n < 6)); // false
 ------------------*/
 
 function every(array, cb) {
-  // your code here.
+  let NewArr = [];
+  for (let elem of array) {
+    let newElem = cb(elem);
+    NewArr.push(newElem);
+  }
+  return NewArr;
 }
-
+console.log(every([1, 3, 5], n => n < 6)); // true
+console.log(every([2, 4, 6], n => n < 6)); // false
+console.log(every([2, 4, 6, 2], n => n < 6)); // false
 /*------------------
 5)
 You've written "forEach", "map", "filter"
@@ -100,11 +122,8 @@ The code has been started for you.
 const nums = [1, 2, 3, 4, 5, 6, 7, 8];
 let sum = 0;
 
-nums.forEach((e) => {
-  // your code here
-});
-
-// console.log(sum);
+nums.forEach((e) => sum += e);
+console.log(sum);
 
 /*------------------
 6.1)
@@ -117,9 +136,9 @@ Test case:
 
 const names = ["Sofia", "Pedro", "Mia"];
 
-// const greetings = // your code here
+const greetings = names.map(n => `Hello, ${n}!`);
 
-// console.log(greetings);
+console.log(greetings);
 
 /*------------------
 6.2)
@@ -131,10 +150,8 @@ Test case:
 ------------------*/
 
 const langs = ["JavaScript", "Python", "Go"];
-
-// const duplicate = // your code here
-
-// console.log(duplicate);
+const duplicate = langs.map(String => String);
+console.log(duplicate);
 
 /*------------------
 6.3)
@@ -150,9 +167,9 @@ const people = [
   { firstname: "Ada", lastname: "Lovelace" },
 ];
 
-// const fullnames = // your code here
+const fullnames = people.map(f => `${f.firstname} ${f.lastname}`);
 
-// console.log(fullnames);
+console.log(fullnames);
 
 /*------------------
 6.4)
@@ -171,9 +188,9 @@ Result should be [
 ]
 ------------------*/
 
-// const fullobjects = // your code here
+const fullobjects = people.map(f => `firstname: ${f.firstname}, lastname: ${f.lastname}, fullname: ${f.firstname} ${f.lastname}`);
 
-// console.log(fullobjects);
+console.log(fullobjects);
 
 /*------------------
 6.5)
@@ -185,11 +202,11 @@ Test case:
 
 ------------------*/
 
+
 const numbers = [3, 7, 24, 1, 66, 89, 88, 23, 54, 54, 12, 9];
+const areEven = numbers.map(num => num % 2 === 0);
 
-// const areEven = // your code here
-
-// console.log(areEven);
+console.log(areEven);
 
 /*------------------
 6.6)
@@ -203,9 +220,9 @@ Test case:
 
 const moreNumbers = [1, 3, 2, 2, 4, 13, 8, 6, 8, 10, 4, 12, 12];
 
-// const areInPosition = // your code here
+const areInPosition = moreNumbers.map((num, ix) => num === ix);
 
-// console.log(areInPosition);
+console.log(areInPosition);
 
 /*------------------
 7.1)
@@ -216,9 +233,9 @@ Test case:
 [1, 34, 83, 65, 3, 24, 98] to [1, 34, 3, 24]
 ------------------*/
 
-const numsList = [1, 34, 83, 65, 3, 24, 98];
+// const numsList = [1, 34, 83, 65, 3, 24, 98];
 
-// const smallNums = // your code here
+// const smallNums = numsList.filter(num => num <50);
 
 // console.log(smallNums);
 
@@ -231,7 +248,7 @@ Test case:
 [1, 34, 83, 65, 3, 24, 98] to [1, 83, 65, 3]
 ------------------*/
 
-// const evenList = // your code here
+// const evenList = numsList.filter(num => num % 2 !== 0);
 
 // console.log(evenList);
 
@@ -246,9 +263,9 @@ Test case:
 
 const moreNums = [1, 0, 1, 3, 5, 6, 6, 1, 9];
 
-// const evenList = // your code here
+const evenList = moreNums.filter((num, ix) => num > ix);
 
-// console.log(evenList);
+console.log(evenList);
 
 /*------------------
 7.4)
@@ -268,9 +285,9 @@ Test case:
 ]
 ------------------*/
 
-// const peopleWithA = // your code here
+const peopleWithA = people.filter(f => f.firstname.includes("a"))
 
-// console.log(peopleWithA);
+console.log(peopleWithA);
 
 /*------------------
 8)
@@ -296,14 +313,16 @@ const wordList1 = ["deified", "civic", "radar", "level", "rotor"];
 const wordList2 = ["kayak", "reviver", "racecar", "reader", "madam"];
 
 function checkPalindromes(list) {
-  return list.every(() => {
-    // add necessary parameters in above
-    // and finish the code in the body here
-  });
+  return list.every((c,i) => c === wordList2.length -1 -i);
 }
+// {
+//     // add necessary parameters in above
+//     // and finish the code in the body here
+//   });
+// }
 
-// console.log(checkPalindromes(wordList1));
-// console.log(checkPalindromes(wordList2));
+console.log(checkPalindromes(wordList1));
+console.log(checkPalindromes(wordList2));
 
 /*------------------
 9)
@@ -313,10 +332,7 @@ use reduce to add all the items in the
 numsList (from the previous question) together.
 ------------------*/
 
-const total = numsList.reduce(() => {
-  // add necessary parameters in above
-  // and finish the code in the body here
-});
+// const total = numsList.reduce((num, amount) => num + amount)
 
 // console.log(total); // should equal 308
 
@@ -332,8 +348,8 @@ starting at position 0
 Test case:
 [1, 34, 83, 65, 3, 24, 98] to [65,98]
 ------------------*/
-
-// const oddList = // your code here
+// const numsList = [1, 34, 83, 65, 3, 24, 98];
+// const oddList = numsList.filter(num, ix => num, ix % 2 === 0);
 
 // console.log(oddList);
 
